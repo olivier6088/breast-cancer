@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: breast_cancer_api
+    ports:
+      - "5000:5000"
+    environment:
+      # Autorise l’app web (host) à appeler l’API (CORS) — côté FastAPI tu lis ALLOWED_ORIGINS si tu as intégré la var
+      ALLOWED_ORIGINS: "http://localhost:8501"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: breast_cancer_app
+    ports:
+      - "8501:8501"
+    environment:
+      # Dans le réseau compose, l’API est joignable via son nom de service:port
+      API_BASE_URL: "http://api:5000"
+    depends_on:
+      api:
+        condition: service_healthy

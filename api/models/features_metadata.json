@@ -1,0 +1,8 @@
+[
+  { "name": "mean radius", "default": 14.0, "unit": "NA" },
+  { "name": "mean texture", "default": 20.0, "unit": "NA" },
+  { "name": "mean perimeter", "default": 90.0, "unit": "NA" },
+  { "name": "mean area", "default": 600.0, "unit": "NA" },
+  { "name": "mean smoothness", "default": 0.10, "unit": "NA" },
+  { "name": "mean compactness", "default": 0.12, "unit": "NA" }
+]
