@@ -14,9 +14,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Code + modèles
 COPY . .
 
-# Port/API
-ENV PORT=5000
 EXPOSE 5000
+
+# Setup an app user so the container doesn't run as the root user
+RUN useradd app
+USER app
 
 # Démarrage
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5000"]

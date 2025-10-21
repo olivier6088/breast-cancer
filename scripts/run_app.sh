@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 # Lance l'app Streamlit (port 8501)
 
